@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validação de Formulário</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .message {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Validação de Formulário</h1>
+    <form id="meuFormulario">
+        <label for="campoA">Campo A:</label>
+        <input type="number" id="campoA" name="campoA" required>
+        <br><br>
+        <label for="campoB">Campo B:</label>
+        <input type="number" id="campoB" name="campoB" required>
+        <br><br>
+        <button type="submit">Submeter</button>
+    </form>
+    <div id="mensagem" class="message"></div>
+
+    <script>
+        document.getElementById('meuFormulario').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+
+            // Obtém os valores dos campos
+            const campoA = parseFloat(document.getElementById('campoA').value);
+            const campoB = parseFloat(document.getElementById('campoB').value);
+
+            // Obtém o elemento onde a mensagem será exibida
+            const mensagemDiv = document.getElementById('mensagem');
+
+            // Verifica se o Campo B é maior que o Campo A
+            if (campoB > campoA) {
+                mensagemDiv.textContent = 'Formulário válido! O número B é maior que o número A.';
+                mensagemDiv.className = 'message success';
+            } else {
+                mensagemDiv.textContent = 'Formulário inválido! O número B deve ser maior que o número A.';
+                mensagemDiv.className = 'message error';
+            }
+        });
+    </script>
+</body>
+</html>
